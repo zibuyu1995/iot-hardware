@@ -2,6 +2,8 @@
   <dictionary name="taodekun">
     <words>
       <w>gpio</w>
+      <w>humiture</w>
+      <w>keepalive</w>
     </words>
   </dictionary>
 </component>

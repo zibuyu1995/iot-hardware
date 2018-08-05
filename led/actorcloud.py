@@ -11,9 +11,9 @@
 import paho.mqtt.client as mqtt
 
 
-
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
+
 
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
@@ -27,4 +27,3 @@ client.on_message = on_message
 client.connect("iot.actorcloud.io", 1883, 60)
 
 client.loop_forever()
-
