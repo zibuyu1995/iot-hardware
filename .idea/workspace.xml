@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4603ec03-9729-45f5-a4cd-b18701c4a07c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/humiture/mqtt_publish.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/humiture/raspi_humiture.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/taodekun.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/taodekun.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp_hum/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/humiture/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp_hum/actorcloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/led/actorcloud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp_hum/mqtt_publish.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp_hum/temp_hum.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,58 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
-      <file leaf-file-name="mqtt_publish.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/humiture/mqtt_publish.py">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2497">
-              <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
-              <folding>
-                <element signature="e#34#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/humiture/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="106">
-                <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-              </first_editor>
-              <second_editor>
-                <markdownNavigatorState />
-              </second_editor>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="raspi_humiture.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/humiture/raspi_humiture.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#34#53#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="actorcloud.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/led/actorcloud.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/humiture/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+            <state relative-caret-position="371">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -108,9 +54,11 @@
         <option value="$PROJECT_DIR$/humiture/tmp.py" />
         <option value="$PROJECT_DIR$/humiture/raspi_humiture.py" />
         <option value="$PROJECT_DIR$/humiture/requirements.txt" />
-        <option value="$PROJECT_DIR$/humiture/mqtt_publish.py" />
         <option value="$PROJECT_DIR$/humiture/README.md" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/humiture/config.py" />
+        <option value="$PROJECT_DIR$/humiture/mqtt_publish.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -153,11 +101,6 @@
               <item name="RaspberryPi" type="b2602c69:ProjectViewProjectNode" />
               <item name="RaspberryPi" type="462c0819:PsiDirectoryNode" />
               <item name="humiture" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RaspberryPi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RaspberryPi" type="462c0819:PsiDirectoryNode" />
-              <item name="led" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -339,8 +282,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/humiture/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state>
+          <caret selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -354,10 +297,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/led/actorcloud.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="212">
+            <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+          </first_editor>
+          <second_editor>
+            <markdownNavigatorState />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/humiture/mqtt_publish.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2497">
-          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+        <state relative-caret-position="2385">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="e#34#45#0" expanded="true" />
           </folding>
@@ -367,8 +329,8 @@
     <entry file="file://$PROJECT_DIR$/humiture/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="106">
-            <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <first_editor relative-caret-position="162">
+            <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
@@ -376,17 +338,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/led/actorcloud.py">
+    <entry file="file://$PROJECT_DIR$/humiture/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="26" column="16" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="33" />
+        <state relative-caret-position="477">
+          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/humiture/config.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        <state relative-caret-position="371">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

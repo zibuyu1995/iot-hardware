@@ -8,7 +8,7 @@ from paho.mqtt import client as mqtt
 from raspi_humiture import humiture
 from config import (
     broker_host, broker_port, broker_keepalive,
-    publish_interval, client_id, username, password
+    publish_interval, topic, client_id, username, password
 )
 
 
@@ -31,7 +31,7 @@ def on_publish(client, userdata, mid):
 # 树莓派消息发布
 def publish_message(client):
     temperature, humidity = humiture()
-    client.publish('humiture', payload=json.dumps({"temperature": temperature, "humidity": humidity}), qos=1)
+    client.publish(topic, payload=json.dumps({"temperature": temperature, "humidity": humidity}), qos=1)
 
 
 # mqtt 连接

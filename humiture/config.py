@@ -6,6 +6,7 @@ broker_port = 1883
 broker_keepalive = 60  # 秒
 publish_interval = 5  # 秒
 
+topic = 'xxx'  # 数据流上报主题
 client_id = 'xxxxx'  # 设备id
 username = 'xxxxx'  # 用户名
 password = 'xxxxx'  # 密码

@@ -1,5 +1,11 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+.DS_Store
+.idea
+.ropeproject
+*.pyc
+Pipfile.lock
+
 *.py[cod]
 *$py.class
 

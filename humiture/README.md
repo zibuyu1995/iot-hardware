@@ -5,7 +5,7 @@
 pip install -r requirements.txt
 ```
 ### 修改配置文件
-需要修改设备id 用户名 密码 温湿度上传间隔
+需要修改设备id 用户名 密码 温湿度上传间隔, gpio口(默认4)
 ```
 vi config.py
 ```
@@ -14,6 +14,6 @@ vi config.py
 python mqtt_publish.py
 ```
 ### Reference:
-[actorcloud](https://www.actorcloud.io/)
-[Adafruit-DHT](https://github.com/adafruit/Adafruit_Python_DHT)
+* [actorcloud](https://www.actorcloud.io/)
+* [Adafruit-DHT](https://github.com/adafruit/Adafruit_Python_DHT)
 
