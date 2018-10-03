@@ -1,6 +1,4 @@
 # 树莓派获取温湿度数据上传到 actorcloud
-> 编写人: Mousse
-> 联系邮箱: zibuyu1995@gmail.com
 
 ### 环境安装:
 ```
