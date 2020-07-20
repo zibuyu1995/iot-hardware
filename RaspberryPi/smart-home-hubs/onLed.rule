@@ -1,0 +1,13 @@
+{
+   "sql":"SELECT avg(lightLevel) as avg_light from smartHomeHubs group by TUMBLINGWINDOW(ss, 5) having avg_light < 55;",
+   "actions":[
+      {
+         "mqtt":{
+            "server":"tcp://127.0.0.1:1883",
+            "topic":"smartHomeHubs/led",
+            "sendSingle":true,
+            "dataTemplate": "{\"status\": \"on\"}"
+         }
+      }
+   ]
+}
