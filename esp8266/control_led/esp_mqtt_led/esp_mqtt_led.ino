@@ -4,9 +4,15 @@
 // GPIO 5 D1
 #define LED 5
 
-const char *ssid = "501"; // Enter your WiFi name
-const char *password = "501501501";  // Enter WiFi password
+// WiFi
+const char *ssid = "mousse"; // Enter your WiFi name
+const char *password = "qweqweqwe";  // Enter WiFi password
+
+// MQTT Broker
 const char *mqtt_broker = "broker.emqx.io";
+const char *topic = "esp8266/led";
+const char *mqtt_username = "emqx";
+const char *mqtt_password = "public";
 const int mqtt_port = 1883;
 
 WiFiClient espClient;
@@ -26,8 +32,10 @@ void setup() {
     client.setServer(mqtt_broker, mqtt_port);
     client.setCallback(callback);
     while (!client.connected()) {
+        String client_id = "esp8266-client-";
+        client_id += String(WiFi.macAddress());
         Serial.println("Connecting to public emqx mqtt broker.....");
-        if (client.connect("esp8266-client")) {
+        if (client.connect(client_id, mqtt_username, mqtt_password)) {
             Serial.println("Public emqx mqtt broker connected");
         } else {
             Serial.print("failed with state ");
@@ -36,8 +44,8 @@ void setup() {
         }
     }
     // publish and subscribe
-    client.publish("esp8266/led", "hello emqx");
-    client.subscribe("esp8266/led");
+    client.publish(topic, "hello emqx");
+    client.subscribe(topic);
 }
 
 void callback(char *topic, byte *payload, unsigned int length) {

@@ -1,10 +1,10 @@
-# NodeMCU ESP8266 与免费公共 MQTT 服务器实现远程控制 LED 灯
+# ESP8266 与免费公共 MQTT 服务器实现远程控制 LED 灯
 
 [MQTT](https://zh.wikipedia.org/zh-hans/MQTT) 是轻量级的、灵活的物联网消息交换和数据传递协议，致力于为 IoT 开发人员实现灵活性与硬件/网络资源的平衡。
 
-[NodeMCU](https://www.nodemcu.com/) 是一个开源的物联网平台。它使用Lua手稿语言编程。该平台基于eLua开源项目，底层使用ESP8266 sdk 0.9.5版本。
+[NodeMCU](https://www.nodemcu.com/) 是一个开源的物联网平台。它使用 Lua 语言编程。该平台基于eLua开源项目，底层使用ESP8266 sdk 0.9.5版本。
 
-在此项目中我们将实现 NodeMCU ESP8266 与 [EMQ X Cloud](https://cloud.emqx.io/cn/) 运营和维护的免费公共 MQTT 服务器远程控制 LED 灯，并使用 Arduino IDE 来对 NodeMCU ESP8266 进行编程。 EMQ X Cloud 是由 EMQ 推出的安全的 [MQTT 物联网云服务平台](https://cloud.emqx.io/cn/)，它提供一站式运维代管、独有隔离环境的 **MQTT 5.0** 接入服务。
+在此项目中我们将实现 NodeMCU(ESP8266) 与 [EMQ X Cloud](https://cloud.emqx.io/cn/) 运营和维护的免费公共 MQTT 服务器远程控制 LED 灯，并使用 Arduino IDE 来对 NodeMCU ESP8266 进行编程。 EMQ X Cloud 是由 EMQ 推出的安全的 [MQTT 物联网云服务平台](https://cloud.emqx.io/cn/)，它提供一站式运维代管、独有隔离环境的 **MQTT 5.0** 接入服务。
 
 
 
@@ -24,7 +24,7 @@
 
 ### NodeMCU ESP8266 和 LED 连接图
 
-![project](./_assets/project.png)
+![project](https://static.emqx.net/images/esp8266_control_led.png)
 
 
 
@@ -47,9 +47,15 @@
 3. 设置 WIFI 名称和密码，以及 MQTT Broker 连接地址和端口
 
    ```c
-   const char *ssid = "name"; // Enter your WiFi name
-   const char *password = "pass";  // Enter WiFi password
+   // WiFi
+   const char *ssid = "mousse"; // Enter your WiFi name
+   const char *password = "qweqweqwe";  // Enter WiFi password
+    
+   // MQTT Broker
    const char *mqtt_broker = "broker.emqx.io";
+   const char *topic = "esp8266/led";
+   const char *mqtt_username = "emqx";
+   const char *mqtt_password = "public";
    const int mqtt_port = 1883;
    ```
 
@@ -69,11 +75,14 @@
 5. 我们将设置 MQTT Broker，同时将连接信息打印到串口监视器上
 
    ```c
+    //connecting to a mqtt broker
    client.setServer(mqtt_broker, mqtt_port);
    client.setCallback(callback);
    while (!client.connected()) {
+       String client_id = "esp8266-client-";
+       client_id += String(WiFi.macAddress());
        Serial.println("Connecting to public emqx mqtt broker.....");
-       if (client.connect("esp8266-client")) {
+       if (client.connect(client_id, mqtt_username, mqtt_password)) {
            Serial.println("Public emqx mqtt broker connected");
        } else {
            Serial.print("failed with state ");
@@ -87,8 +96,8 @@
 
    ```c
    // publish and subscribe
-   client.publish("esp8266/test", "hello emqx");
-   client.subscribe("esp8266/test");
+   client.publish(topic, "hello emqx");
+   client.subscribe(topic);
    ```
 
 7. 编写回调函数，从串行监视器读取下发指令并且控制 LED 的开和关
@@ -109,84 +118,89 @@
        Serial.println("-----------------------");
    }
    ```
+8. 完整代码
+   ```c
+   #include <ESP8266WiFi.h>
+   #include <PubSubClient.h>
+   
+   // GPIO 5 D1
+   #define LED 5
+   
+   // WiFi
+   const char *ssid = "mousse"; // Enter your WiFi name
+   const char *password = "qweqweqwe";  // Enter WiFi password
+   
+   // MQTT Broker
+   const char *mqtt_broker = "broker.emqx.io";
+   const char *topic = "esp8266/led";
+   const char *mqtt_username = "emqx";
+   const char *mqtt_password = "public";
+   const int mqtt_port = 1883;
+   
+   WiFiClient espClient;
+   PubSubClient client(espClient);
+   
+   void setup() {
+       // Set software serial baud to 115200;
+       Serial.begin(115200);
+       // connecting to a WiFi network
+       WiFi.begin(ssid, password);
+       while (WiFi.status() != WL_CONNECTED) {
+           delay(500);
+           Serial.println("Connecting to WiFi..");
+       }
+       Serial.println("Connected to the WiFi network");
+       //connecting to a mqtt broker
+       client.setServer(mqtt_broker, mqtt_port);
+       client.setCallback(callback);
+       while (!client.connected()) {
+           String client_id = "esp8266-client-";
+           client_id += String(WiFi.macAddress());
+           Serial.println("Connecting to public emqx mqtt broker.....");
+           if (client.connect(client_id, mqtt_username, mqtt_password)) {
+               Serial.println("Public emqx mqtt broker connected");
+           } else {
+               Serial.print("failed with state ");
+               Serial.print(client.state());
+               delay(2000);
+           }
+       }
+       // publish and subscribe
+       client.publish(topic, "hello emqx");
+       client.subscribe(topic);
+   }
+   
+   void callback(char *topic, byte *payload, unsigned int length) {
+       Serial.print("Message arrived in topic: ");
+       Serial.println(topic);
+       Serial.print("Message:");
+       String message;
+       for (int i = 0; i < length; i++) {
+           message = message + (char) payload[i];  // convert *byte to string
+       }
+       Serial.print(message);
+       if (message == "on") { digitalWrite(LED, LOW); }   // LED on
+       if (message == "off") { digitalWrite(LED, HIGH); } // LED off
+       Serial.println();
+       Serial.println("-----------------------");
+   }
+   
+   void loop() {
+       client.loop();
+   }
+   ```
+
+
 
 ### 连接和测试
 
 1. [请使用 Arduino IDE ](<https://www.arduino.cc/en/Main/Software>)将完整代码上传 ESP8266，并打开串口监视器
 
-   ![esp_con](./_assets/esp_con.png)
+   ![esp_con](https://static.emqx.net/images/esp8266_connect_ssuccessful.png)
 
 2. 建立 MQTTX 客户端 与 MQTT Broker 连接, 并向 ESP8266 发送指令
 
-   ![esp_con](./_assets/control.png)
-
-
-
-
-### Arduino IDE 完整代码
-
-```c
-#include <ESP8266WiFi.h>
-#include <PubSubClient.h>
-
-// GPIO 5 D1
-#define LED 5
-
-const char *ssid = "name"; // Enter your WiFi name
-const char *password = "pass";  // Enter WiFi password
-const char *mqtt_broker = "broker.emqx.io";
-const int mqtt_port = 1883;
-
-WiFiClient espClient;
-PubSubClient client(espClient);
-
-void setup() {
-    // Set software serial baud to 115200;
-    Serial.begin(115200);
-    // connecting to a WiFi network
-    WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED) {
-        delay(500);
-        Serial.println("Connecting to WiFi..");
-    }
-    Serial.println("Connected to the WiFi network");
-    //connecting to a mqtt broker
-    client.setServer(mqtt_broker, mqtt_port);
-    client.setCallback(callback);
-    while (!client.connected()) {
-        Serial.println("Connecting to public emqx mqtt broker.....");
-        if (client.connect("esp8266-client")) {
-            Serial.println("Public emqx mqtt broker connected");
-        } else {
-            Serial.print("failed with state ");
-            Serial.print(client.state());
-            delay(2000);
-        }
-    }
-    // publish and subscribe
-    client.publish("esp8266/led", "hello emqx");
-    client.subscribe("esp8266/led");
-}
-
-void callback(char *topic, byte *payload, unsigned int length) {
-    Serial.print("Message arrived in topic: ");
-    Serial.println(topic);
-    Serial.print("Message:");
-    String message;
-    for (int i = 0; i < length; i++) {
-        message = message + (char) payload[i];  // convert *byte to string
-    }
-    Serial.print(message);
-    if (message == "on") { digitalWrite(LED, LOW); }   // LED on
-    if (message == "off") { digitalWrite(LED, HIGH); } // LED off
-    Serial.println();
-    Serial.println("-----------------------");
-}
-
-void loop() {
-    client.loop();
-}
-```
+   ![esp_con](https://static.emqx.net/images/esp8266_control_led_publish.png)
 
 
 
