@@ -1,4 +1,4 @@
-# ESP8266 连接到免费的公共 MQTT 服务器
+ESP8266 connects to the free public MQTT broker# ESP8266 连接到免费的公共 MQTT 服务器
 
 [MQTT](https://www.emqx.io/cn/mqtt) 是轻量级的、灵活的物联网消息交换和数据传递协议，致力于为 IoT 开发人员实现灵活性与硬件/网络资源的平衡。
 
