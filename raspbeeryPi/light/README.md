@@ -1,10 +1,8 @@
-# 树莓派远程控制 LED 灯
-
+# 树莓派采集光照强度
 
 ## 安装
 ```
 pip install paho-mqtt
-pip install RPi.GPIO
 ```
 
 ## 运行
